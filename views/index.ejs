@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kronika počasí</title>
+    <link rel="stylesheet" href="styly.css"> 
+    <style>
+        h1 {
+            color: aliceblue;
+        }
+        body {
+            font-size: xx-large;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            background-image: url('https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            padding: 20px;
+        }
+        
+        .content {
+            width: 45%;
+            margin-bottom: 30px; /* Oddělení odspodu o 30px */
+        }
+        
+        .form-container {
+            width: 45%;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px; /* Oddělení zeshora o 30px */
+        }
+        
+        .form-group {
+            margin-bottom: 30px; /* Oddělení nad sebou o 30px */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content">
+        <h1>Kronika počasí</h1>
+    </div>
+    
+    <form action="/submit" method="post" class="form-container">
+        <div class="form-group">
+            <label for="date">Zadejte dnešní datum</label>
+            <input type="date" id="datum" name="datum" required>
+        </div>
+        
+        <div class="form-group">
+            <label>Zadejte aktuální hodinu</label>
+            <select id="hodina" name="hodina">
+                <% for (var i = 0; i <= 23; i++) { %>
+                    <option value="<%= i %>"><%= i %></option>
+                <% } %>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="importance">Zadejte aktuální teplotu</label>
+            <input type="range" id="aktTeplota" name="aktTeplota" min="-30" max="45" step="1" oninput="showValue()">
+            <span id="importanceValue"></span>
+        </div>
+        
+        <div class="form-group">
+            <label>Zvolte oblačnost</label>
+            <select id="oblacnost" name="oblacnost">
+                <option value="jasno">☀️</option>
+                <option value="polojasno">⛅</option>
+                <option value="cloudy">☁️</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="windSpeed">Zadejte rychlost větru</label>
+            <input type="range" id="windSpeed" name="windSpeed" min="0" max="100" step="1" oninput="showWindSpeed()">
+            <span id="windSpeedValue"></span>
+        </div>
+        
+        <div class="form-group">
+            <label for="poznamka">Poznámka:</label>
+            <input type="text" id="poznamka" name="poznamka">
+        </div>
+        
+        <button type="submit">Uložit volby</button>
+    </form>
+    
+    
+    <script>
+        function showValue() {
+            var range = document.getElementById("aktTeplota");
+            var value = document.getElementById("importanceValue");
+            value.textContent = range.value;
+        }
+        
+        function showWindSpeed() {
+            var range = document.getElementById("windSpeed");
+            var value = document.getElementById("windSpeedValue");
+            value.textContent = range.value;
+        }
+    </script>
+</body>
+</html>

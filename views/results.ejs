@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>data kroniky</title>
+    <link rel="stylesheet" href="styles.css"> 
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: auto;
+            background-color: #f0f0f0;
+            padding: auto;
+            flex-direction: column; /* Směr sloupce pro centrování obsahu */
+        }
+
+        h1 {
+            margin-bottom: 20px; /* Oddělení mezi nadpisem a tabulkou */
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            max-width: 800px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>data kroniky o počasí</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Datum</th>
+                <th>Čas</th>
+                <th>Datum odpovědi</th>
+                <th>Hodina</th>
+                <th>Aktuální teplota (°C)</th>
+                <th>Oblačnost</th>
+                <th>Rychlost větru (km/h)</th>
+                <th>Poznámka</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% responses.forEach(function(response) { 
+                const date = new Date(response.timestamp);
+                const dateString = `${('0' + date.getDate()).slice(-2)}.${('0' + (date.getMonth() + 1)).slice(-2)}.${date.getFullYear()}`;
+                const timeString = `${('0' + date.getHours()).slice(-2)}:${('0' + date.getMinutes()).slice(-2)}:${('0' + date.getSeconds()).slice(-2)}`;
+            %>
+            <tr>
+                <td><%= dateString %></td>
+                <td><%= timeString %></td>
+                <td><%= response.answers.datum %></td>
+                <td><%= response.answers.hodina %></td>
+                <td><%= response.answers.aktTeplota %></td>
+                <td><%= response.answers.oblacnost %></td>
+                <td><%= response.answers.windSpeed %></td>
+                <td><%= response.answers.poznamka %></td>
+            </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+</body>
+</html>

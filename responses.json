@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1712333238212,
+    "timestamp": "2024-04-05T16:07:18.212Z",
+    "answers": {
+      "datum": "2024-04-05",
+      "hodina": "18",
+      "aktTeplota": "17",
+      "oblacnost": "jasno",
+      "windSpeed": "14",
+      "poznamka": "zápis počasí"
+    }
+  },
+  {
+    "id": 1712334215172,
+    "timestamp": "2024-04-05T16:23:35.172Z",
+    "answers": {
+      "datum": "2024-04-16",
+      "hodina": "0",
+      "aktTeplota": "8",
+      "oblacnost": "jasno",
+      "windSpeed": "50",
+      "poznamka": ""
+    }
+  }
+]
